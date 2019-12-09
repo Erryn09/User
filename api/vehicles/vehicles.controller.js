@@ -36,6 +36,19 @@ exports.getVehicles = function(req, res, next) {
     })
 }
 
+exports.getVehiclesOnRoad = function(req, res, next) {
+    Vehicles.getOnRoad({}, function(err, vehicles) {
+        if(err) {
+            res.json({
+                error: err
+            })
+        }
+        res.json({
+            vehicles: vehicles
+        })
+    })
+}
+
 exports.getVehicle = function(req, res, next) {
     Vehicles.getById({tag_id: req.params.tag_id}, function(err, vehicle) {
         if(err) {

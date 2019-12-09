@@ -8,7 +8,7 @@ vehiclesSchema.statics = {
         vehicle.save(cb);
     },
 
-    get: function(query, cb) {
+    getOnRoad : function(query, cb) {
         var vehicles = []
         axios.get('http://localhost:4000/api/vehicles_on_road')
             .then((response) => {
@@ -18,7 +18,10 @@ vehiclesSchema.statics = {
             .catch((error) => {
                 console.log(error);
             })
-        
+    },
+
+    get: function(query, cb) {
+        this.find(query, cb)
     },
 
     getById: function(query, cb) {
